@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOURL - URL Shortener</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div style="position: absolute; top: 20px; right: 20px;">
+                <button id="themeToggle" class="btn btn-secondary" onclick="toggleDarkMode()" style="padding: 10px 15px; font-size: 1.2rem;">
+                    🌙
+                </button>
+            </div>
+            <h1>🔗 GOURL</h1>
+            <p class="subtitle">Shorten your URLs with analytics</p>
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-secondary" onclick="showLogin()">Login</button>
+                <button class="btn btn-primary" onclick="showRegister()">Sign Up</button>
+            </div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <span id="username"></span>
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Auth Modals -->
+        <div id="authModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAuthModal()">&times;</span>
+                <div id="loginForm">
+                    <h2>Login</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <input type="text" id="loginUsername" placeholder="Username" required>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <p class="switch-form">Don't have an account? <a href="#" onclick="showRegister()">Sign up</a></p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <h2>Sign Up</h2>
+                    <form onsubmit="handleRegister(event)">
+                        <input type="text" id="registerUsername" placeholder="Username" required>
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                        <input type="password" id="registerPassword" placeholder="Password (min 6 chars)" required minlength="6">
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    <p class="switch-form">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- URL Shortener Section -->
+            <section class="card">
+                <h2>Shorten a URL</h2>
+                <form id="shortenForm" onsubmit="handleShorten(event)">
+                    <div class="input-group">
+                        <input type="url" id="urlInput" placeholder="https://example.com" required>
+                        <button type="submit" class="btn btn-primary">Shorten</button>
+                    </div>
+                    <div class="advanced-options">
+                        <div class="option-group">
+                            <label for="customCodeInput" class="option-label">Custom Alias (Optional)</label>
+                            <input type="text" id="customCodeInput" placeholder="e.g., mybrand" class="option-input">
+                        </div>
+                        <div class="option-group">
+                            <label class="option-label">
+                                <input type="checkbox" id="enableExpiration" onchange="toggleExpiration()">
+                                <span>Set Expiration Date</span>
+                            </label>
+                            <input type="datetime-local" id="expiresAtInput" class="option-input" style="display: none;" min="">
+                        </div>
+                    </div>
+                </form>
+                <div id="result" class="result"></div>
+                <div id="qrModal" class="modal">
+                    <div class="modal-content qr-modal-content">
+                        <span class="close" onclick="closeQRModal()">&times;</span>
+                        <h2>QR Code</h2>
+                        <div id="qrCodeContainer"></div>
+                        <div class="qr-actions">
+                            <button class="btn btn-primary" onclick="copyQRCode()">📋 Copy QR Code</button>
+                            <button class="btn btn-secondary" onclick="downloadQRCode()">💾 Download QR Code</button>
+                        </div>
+                        <p class="qr-help-text">💡 Tip: Right-click the QR code to save it directly</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Lookup Section -->
+            <section class="card">
+                <h2>View Analytics</h2>
+                <form id="statsForm" onsubmit="handleStats(event)">
+                    <div class="input-group">
+                        <input type="text" id="codeInput" placeholder="Enter short code or full URL (e.g., WO8iDmzy or http://localhost:8080/WO8iDmzy)" required>
+                        <button type="submit" class="btn btn-secondary">View Stats</button>
+                    </div>
+                </form>
+                <div id="statsResult" class="stats-result"></div>
+                <div id="exportButtons" style="display: none; margin-top: 15px; text-align: center;">
+                    <button class="btn btn-secondary" onclick="exportStats('csv')">📥 Export CSV</button>
+                    <button class="btn btn-secondary" onclick="exportStats('json')">📥 Export JSON</button>
+                </div>
+            </section>
+
+            <!-- My URLs Section (for authenticated users) -->
+            <section class="card" id="myUrlsSection" style="display: none;">
+                <h2>My URLs</h2>
+                <button class="btn btn-secondary" onclick="loadMyURLs()" style="margin-bottom: 15px;">Refresh</button>
+                <div id="myUrlsList"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with Go • Open Source</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
+

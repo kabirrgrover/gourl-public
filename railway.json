@@ -1,0 +1,16 @@
+# Railway deployment configuration
+# Railway will automatically detect Go and build the app
+
+# Build command (Railway auto-detects, but we can specify)
+# Build: go build -o gourl ./cmd/server/main.go
+
+# Start command
+# Start: ./gourl
+
+# Environment variables needed:
+# PORT - Railway sets this automatically
+# DB_PATH - Use Railway's volume for persistence
+# JWT_SECRET - Set in Railway dashboard
+# ENV=production
+# CORS_ALLOWED_ORIGINS - Your frontend domain
+

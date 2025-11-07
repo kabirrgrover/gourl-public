@@ -1,0 +1,7 @@
+# Database migrations and setup
+
+This directory will contain database migration files in future phases.
+
+For now, the database schema is automatically created on first run.
+
+

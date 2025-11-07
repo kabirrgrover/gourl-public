@@ -1,0 +1,12 @@
+# Docker ignore file
+*.db
+*.log
+.DS_Store
+.env
+.git
+.gitignore
+README.md
+*.md
+.vscode
+.idea
+
