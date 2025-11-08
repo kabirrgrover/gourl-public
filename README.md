@@ -19,14 +19,8 @@
 ### URL Shortening Interface
 ![URL Shortening](./docs/screenshots/url-shortening.png)
 
-*Clean, modern interface for shortening URLs with custom aliases, expiration dates, and QR code generation*
-
 ### Analytics Dashboard
 ![Analytics Dashboard](./docs/screenshots/analytics-dashboard.png)
-
-*Comprehensive analytics with geographic distribution, click tracking, and export options*
-
-> **Note:** Add your screenshots to `docs/screenshots/` directory and update the paths above.
 
 ---
 
