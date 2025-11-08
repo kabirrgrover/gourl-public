@@ -14,7 +14,7 @@
 
 ---
 
-## 📸 Screenshots
+## 📸 URL Shortener
 
 ### URL Shortening Interface
 ![URL Shortening](./docs/screenshots/url-shortening.png)
