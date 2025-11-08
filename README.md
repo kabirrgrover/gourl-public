@@ -67,8 +67,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/gourl.git
-cd gourl
+git clone https://github.com/kabirrgrover/gourl-public.git
+cd gourl-public
 
 # Install dependencies
 go mod download
@@ -311,6 +311,6 @@ If you find this project useful, please give it a ⭐ on GitHub!
 
 **Made with ❤️ using Go**
 
-[Report Bug](https://github.com/YOUR_USERNAME/gourl/issues) • [Request Feature](https://github.com/YOUR_USERNAME/gourl/issues) • [Documentation](./README.md)
+[Report Bug](https://github.com/kabirrgrover/gourl-public/issues) • [Request Feature](https://github.com/kabirrgrover/gourl-public/issues) • [Documentation](./README.md)
 
 </div>
