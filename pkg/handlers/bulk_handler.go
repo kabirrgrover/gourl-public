@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"gourl/internal/database"
-	"gourl/internal/models"
-	"gourl/internal/utils"
+	"gourl/pkg/database"
+	"gourl/pkg/models"
+	"gourl/pkg/utils"
 
 	"github.com/gin-gonic/gin"
 )

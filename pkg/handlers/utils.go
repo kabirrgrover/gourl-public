@@ -3,7 +3,7 @@ package handlers
 import (
 	"strings"
 
-	"gourl/internal/config"
+	"gourl/pkg/config"
 
 	"github.com/gin-gonic/gin"
 )

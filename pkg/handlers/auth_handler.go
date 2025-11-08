@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"gourl/internal/auth"
-	"gourl/internal/database"
-	"gourl/internal/models"
+	"gourl/pkg/auth"
+	"gourl/pkg/database"
+	"gourl/pkg/models"
 
 	"github.com/gin-gonic/gin"
 )

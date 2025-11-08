@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"gourl/internal/config"
-	"gourl/internal/database"
-	"gourl/internal/handlers"
-	"gourl/internal/middleware"
+	"gourl/pkg/config"
+	"gourl/pkg/database"
+	"gourl/pkg/handlers"
+	"gourl/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
 )

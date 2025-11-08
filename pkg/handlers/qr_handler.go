@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"gourl/internal/database"
+	"gourl/pkg/database"
 
 	"github.com/gin-gonic/gin"
 	"github.com/skip2/go-qrcode"
