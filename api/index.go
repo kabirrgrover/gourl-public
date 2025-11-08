@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"log"
 	"net/http"
+	"sync"
 
 	"gourl/pkg/config"
 	"gourl/pkg/database"
@@ -14,14 +16,21 @@ import (
 
 var router *gin.Engine
 
-func init() {
-	// Initialize database when serverless function starts
-	if err := database.InitDB(); err != nil {
-		panic(err)
-	}
+var initOnce sync.Once
 
-	// Set up router once
-	setupRouter()
+func init() {
+	// Initialize only once (Vercel may call init multiple times)
+	initOnce.Do(func() {
+		// Initialize database when serverless function starts
+		// Don't panic on error - let it fail gracefully
+		if err := database.InitDB(); err != nil {
+			log.Printf("Warning: Database initialization failed: %v", err)
+			// Continue anyway - database will be initialized on first request
+		}
+
+		// Set up router once
+		setupRouter()
+	})
 }
 
 func setupRouter() {
@@ -84,6 +93,16 @@ func setupRouter() {
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	// Ensure initialization happened
+	initOnce.Do(func() {
+		if err := database.InitDB(); err != nil {
+			log.Printf("Database init error: %v", err)
+		}
+		if router == nil {
+			setupRouter()
+		}
+	})
+	
 	// Serve via Vercel bridge
 	bridge.Start(router)
 }
