@@ -1,6 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "go build -o bootstrap api/index.go",
+  "builds": [
+    {
+      "src": "api/index.go",
+      "use": "@vercel/go"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
